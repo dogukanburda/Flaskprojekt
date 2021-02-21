@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, url_for, request, send_from_
 import numpy as np
 from apscheduler.schedulers.background import BackgroundScheduler
 app = Flask(__name__,static_url_path='')
+rng = np.random.default_rng()
 
 label=np.arange(1024)
 value=np.zeros(1024)
@@ -26,7 +27,7 @@ def home():
 @app.route("/graph")
 def graph():
     
-    return render_template("fullgraph.html",title='ASD',  label=label.tolist(), value=value.tolist())
+    return render_template("fullgraph.html",title='Graph I',  label=label.tolist(), value=value.tolist())
 
 
 @app.route("/admin")
@@ -41,7 +42,7 @@ def login():
     else:
         return render_template("detinput.html")
 
-@app.route("/detectors/<numara>")
+@app.route("/detectors/<int:numara>")
 def dedektor(numara):
     return render_template("ornekdet.html",number=numara)
 
@@ -50,11 +51,15 @@ def dedektor(numara):
 def load_data():
     print("çalıştı")
     for k in range(10000):
-        i = round(np.random.normal(5,0.1)*100)
+        i = round(np.random.normal(3,0.1)*100)
         value[i] = value[i]+1
+        j = round(rng.normal(768,30))
+        value[j] = value[j]+1
+        z= round(rng.normal(600,20))
+        value[z] = value[z]+1
 
 if __name__ == "__main__":
     scheduler = BackgroundScheduler()
-    scheduler.add_job(func=load_data, trigger="interval", seconds=10)
+    scheduler.add_job(func=load_data, trigger="interval", seconds=1)
     scheduler.start()
     app.run(debug=True)

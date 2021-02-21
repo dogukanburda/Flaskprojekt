@@ -9,7 +9,7 @@
     </center>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <center>
-<canvas id="myChart" width="400" height="400"></canvas>
+<canvas id="myChart" width="800" height="500"></canvas>
 <script>
 var ctx = document.getElementById('myChart');
 var myChart = new Chart(ctx, {
@@ -17,7 +17,7 @@ var myChart = new Chart(ctx, {
     data: {
         labels: {{label}},
         datasets: [{
-            label: '# of Votes',
+            label: '# of Counts',
             data: {{value}},
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request, send_from_directory,Markup
+from flask import Flask, render_template, redirect, url_for, request, send_from_directory,Markup,jsonify
 import numpy as np
 from apscheduler.schedulers.background import BackgroundScheduler
 import pandas as pd
@@ -23,6 +23,10 @@ def home():
 @app.route("/graph")
 def graph(): 
     return render_template("fullgraph.html",title='Graph I',  label=label.tolist(), value=value.tolist())
+@app.route("/data")
+def data():
+    data1 = [1,2,3,4]
+    return jsonify(mydata=data1)
 @app.route("/graph2")
 def graph2():
     fig = px.bar(x=range(10), y=range(10))

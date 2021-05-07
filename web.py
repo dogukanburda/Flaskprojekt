@@ -54,7 +54,7 @@ def graph2():
 
     fig = go.Figure(data=trace1, layout=layout)
     plt_div2=plot(fig,
-        include_plotlyjs='cdn',
+        include_plotlyjs=True,
         output_type='div')
 
 

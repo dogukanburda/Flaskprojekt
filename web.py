@@ -95,4 +95,4 @@ if __name__ == "__main__":
     scheduler.add_job(func=load_data, trigger="interval", seconds=5)
 
     scheduler.start()
-    app.run(debug=True)
+    app.run(host="0.0.0.0")
